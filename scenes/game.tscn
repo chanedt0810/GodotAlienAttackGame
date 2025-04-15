@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cny8yhw7ylsde"]
+
+[ext_resource type="Texture2D" uid="uid://b0lo3jtjwax1g" path="res://assets/textures/bg.png" id="1_hfdcp"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 1287.0
+offset_bottom = 728.0
+texture = ExtResource("1_hfdcp")
+stretch_mode = 1
