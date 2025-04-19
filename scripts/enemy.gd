@@ -1,5 +1,6 @@
 extends Area2D
 
+signal died
 @export var speed = 200
 
 func _ready() -> void:
@@ -11,6 +12,7 @@ func _physics_process(delta: float) -> void:
 	global_position.x -= speed * delta
 
 func die() -> void:
+	emit_signal("died")
 	# Remove the enemy from the scene
 	queue_free()
 
