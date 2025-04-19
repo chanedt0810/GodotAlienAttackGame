@@ -5,3 +5,7 @@ extends Area2D
 func _physics_process(delta: float) -> void:
 	# Move the enemy to the left
 	global_position.x -= speed * delta
+
+func die() -> void:
+	# Remove the enemy from the scene
+	queue_free()
