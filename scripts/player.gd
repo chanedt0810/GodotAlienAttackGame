@@ -2,7 +2,13 @@ extends CharacterBody2D
 
 var speed = 300
 
-func _physics_process(delta: float) -> void:
+var rocket_scene = preload("res://scenes/rocket.tscn")
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
+
+func _physics_process(_delta: float) -> void:
 	# Move the player based on input
 	velocity = Vector2.ZERO
 
@@ -19,4 +25,9 @@ func _physics_process(delta: float) -> void:
 
 	var screen_size = get_viewport().size
 	# Make sure player isn't able to exit game window
-	global_position = global_position.clamp(Vector2.ZERO, screen_size)
+	global_position = global_position.clamp(Vector2.ZERO, screen_size)	
+
+func shoot():
+	var rocket_instance = rocket_scene.instantiate()
+	add_child(rocket_instance)
+	rocket_instance.global_position.x += 80
