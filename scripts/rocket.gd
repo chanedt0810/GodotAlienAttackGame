@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var speed = 500
+
 @onready var visible_notifier = get_node("VisibleNotifier") # $VisibleNotifier
 
 func _ready() -> void:

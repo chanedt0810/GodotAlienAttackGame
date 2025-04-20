@@ -1,6 +1,7 @@
 extends Area2D
 
 signal died
+
 @export var speed = 200
 
 func _ready() -> void:

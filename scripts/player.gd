@@ -1,10 +1,14 @@
 extends CharacterBody2D
 
 signal took_damage
+
 var speed = 300
 var rocket_position = 80
+
 var rocket_scene = preload("res://scenes/rocket.tscn")
+
 @onready var rocket_container = get_node("RocketContainer")
+@onready var rocket_fire_sound = $RocketFireSound
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("shoot"):
@@ -35,6 +39,7 @@ func shoot():
 	rocket_container.add_child(rocket_instance)
 	rocket_instance.global_position = global_position
 	rocket_instance.global_position.x += rocket_position
+	rocket_fire_sound.play()
 
 func take_damage():
 	emit_signal("took_damage")
