@@ -5,11 +5,14 @@ var score = 0
 @onready var death_zone = $DeathZone
 @onready var player = $Player
 @onready var enemy_spawner = $EnemySpawner
+@onready var hud = $UI/HUD
 
 func _ready() -> void:
 	death_zone.connect("area_entered", _on_death_zone_area_entered)
 	player.connect("took_damage", _on_player_took_damage)
 	enemy_spawner.connect("enemy_spawned", _on_enemy_spawner_enemy_spawned)
+	hud.set_score_label(score)
+	hud.set_lives_left_label(lives)
 
 func _on_death_zone_area_entered(area: Area2D) -> void:
 	area.die()
@@ -17,6 +20,7 @@ func _on_death_zone_area_entered(area: Area2D) -> void:
 func _on_player_took_damage() -> void:
 	# Take life from player
 	lives -= 1
+	hud.set_lives_left_label(lives)
 	# Check if player is dead
 	if lives == 0:
 		player.die()
@@ -29,5 +33,5 @@ func _on_enemy_spawner_enemy_spawned(enemy_instance: Node) -> void:
 func _on_enemy_died() -> void:
 	# Increase score when an enemy dies	
 	score += 100
-	print("Score: ", score)
+	hud.set_score_label(score)
 
